@@ -40,7 +40,7 @@ export class StartComponent {
         throw `Player name cannot be empty!`
       };
       let url = getUrl('username');
-      response = await this.RequestService.postData(url,{"username" : this.playerName});
+      response = await this.RequestService.postData(url,{"playerName" : this.playerName});
       if(response && response.resultCode === '20000'){
 
       }else{
