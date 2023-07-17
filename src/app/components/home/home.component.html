@@ -1,0 +1,18 @@
+
+<div class="start-menu">
+    <div class="Topic">
+        <h1>DARK DUNGEON</h1>
+    </div>
+    <div class="menu-options">
+        <button id="newGameBtn" (click)="onStartNewGame()" [ngClass]="{ 'wink-wink': isStartButtonClicked }">
+        Play
+        </button>
+        <button [disabled]="isStartButtonClicked" id="settingsBtn" (click)="onSettings()">
+        Settings
+        </button>
+        <button [disabled]="isStartButtonClicked" id="CreditsBtn" (click)="onCredits()">
+            Credits
+        </button>
+
+    </div>
+</div>  

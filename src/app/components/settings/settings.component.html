@@ -1,0 +1,11 @@
+<div class="BG_Volume">
+  Music
+  <input class="slider_music" id="BG" type="range" min="0" step="0.01" max="1" value="10" [(ngModel)]="BGVolume" (input)="onBGVolumeChange()" >
+  effect
+  <input class="slider_effect" id="effect" type="range" min="0" step="0.01" max="1" value="10" [(ngModel)]="EffectVolume" (input)="onEffectVolumeChange()" >
+  <div class="menu-settings">
+    <button id="BackBtn" (click)="onBack()">
+    Back
+    </button>
+  </div>
+</div>

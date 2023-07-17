@@ -1,0 +1,108 @@
+@import url('https://fonts.cdnfonts.com/css/8bit-wonder');
+.gameplay {
+    background-image: url('../../../assets/picture/dungeon.jpg');
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .canvas-wrapper {
+    width: 85%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    box-sizing: border-box;
+  }
+
+  #gameCanvas {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+  
+  .name-input {
+    font-family: '8BIT WONDER', sans-serif;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .name-input input {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid black;
+  }
+
+  .name-input button {
+    padding: 10px 20px;
+    font-family: '8BIT WONDER', sans-serif;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .sound-effect-settings {
+    font-family: '8BIT WONDER', sans-serif;
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .slider-effect {
+    width: 150px;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .button button {
+    padding: 10px 20px;
+    font-family: '8BIT WONDER', sans-serif;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+
+  .Text_field_name {
+    align-items: center;
+    padding: 10px 20px;
+    font-family: '8BIT WONDER', sans-serif;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .Text_field_name input {
+    flex-grow: 1;
+  }
+  
+  .Text_field_name input::placeholder {
+    text-align: center;
+  }
+  
