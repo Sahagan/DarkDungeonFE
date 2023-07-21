@@ -1,6 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/8bit-wonder');
 .gameplay {
-    background-image: url('../../../assets/picture/dungeon.jpg');
+    background-image: url('../../../assets/picture/pixel-art-starry-night.gif');
     background-size: cover;
     position: fixed;
     top: 0;
@@ -66,8 +66,26 @@
     align-items: center;
   }
   
+  /* make sound Effect displayed as row */
+  .slider-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  .slider-wrapper {
+    margin-right: 10px;
+  }
+  
   .slider-effect {
-    width: 150px;
+    width: 100px;
+  }
+  
+  .slider-music {
+    width: 100px;
   }
 
   .button {

@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { CreditsComponent } from './components/credits/credits.component';
 import { StartComponent } from './components/start/start.component';
 import { RequestService } from './services/common/request.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RequestService } from './services/common/request.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [RequestService],
   bootstrap: [AppComponent]

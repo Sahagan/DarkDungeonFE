@@ -1,32 +1,51 @@
 import { Component, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { getUrl, playButtonSound, playrainEffect, setVolumeEffect, stoprainEffect } from '../../services/common/utility.service';
+import { getUrl, playButtonSound, playInputPlayerName, playrainEffect, setVolumeBackgroundMusic, setVolumeEffect, stopInputPlayerName, stoprainEffect } from '../../services/common/utility.service';
 import { RequestService } from 'src/app/services/common/request.service';
-
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.css']
+  styleUrls: ['./start.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      state('hidden', style({ opacity: 0 })),
+      state('visible', style({ opacity: 1 })),
+      transition('hidden => visible', animate('1000ms ease-in')),
+    ]),
+  ]
 })
 export class StartComponent {
   constructor(
     private router: Router,
     private RequestService: RequestService
   ) {}
+  public state = 'hidden';
   playerName : any;
   EffectVolume : any;
-  
-  ngOnInit(): void {
-    playrainEffect();
+  MusicVolume: any;
+  //Input
+  showNameInput: boolean = true;
+  async ngOnInit(): Promise<void> {
+    await setTimeout(()=>{
+      this.state = 'visible';
+      setTimeout(() => {
+        playInputPlayerName();
+      },1000);
+    },1000);
   };
 
   onEffectVolumeChange(): void {
     setVolumeEffect(this.EffectVolume);
   };
 
+  onMusicVolumeChange(): void {
+    setVolumeBackgroundMusic(this.MusicVolume);
+  };
+
   onBack(): void {
-    stoprainEffect();
+    stopInputPlayerName();
     //back to homepage
     playButtonSound();
     this.router.navigate(['/home']);
@@ -35,14 +54,17 @@ export class StartComponent {
   async onEnterClicked(){
     playButtonSound();
     let response:any;
+    let url:any;
     try{
       if(!this.playerName){
         throw `Player name cannot be empty!`
       };
-      let url = getUrl('username');
+      url = await getUrl('username');
       response = await this.RequestService.postData(url,{"playerName" : this.playerName});
-      if(response && response.resultCode === '20000'){
-
+      if(response){
+        this.showNameInput = false;
+        url = await getUrl('map');
+        response = await this.RequestService.getData(url);
       }else{
         throw `Service Unavailable`
       }
