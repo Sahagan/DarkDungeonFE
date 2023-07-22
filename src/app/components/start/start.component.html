@@ -11,6 +11,11 @@
       />
       <button (click)="onEnterClicked()">Enter</button>
     </div>
+    <div *ngIf="NameConfirm" class="name-confirm">
+      <div class="ConfirmMSG">your name is {{playerName}}?</div>
+      <button (click)="onConfirmClicked()">YES</button>
+      <button (click)="onNoClicked()">NO</button>
+    </div>
   </div>
   <div class="sound-effect-settings">
     <div class="slider-row">
