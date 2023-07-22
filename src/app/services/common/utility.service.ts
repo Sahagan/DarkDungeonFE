@@ -95,6 +95,7 @@ export function playbgMusicEnd(): void {
 export async function stopAllMusic(){
     await bgMusic.pause();
     await bgMusicEnd.pause();
+    await NameInputMusic.pause();
 }
 
 export async function stopAllMusicPlus() {
