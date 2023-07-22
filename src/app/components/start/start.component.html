@@ -1,33 +1,50 @@
 <div [@fadeIn]="state" class="gameplay">
-  <div class="canvas-wrapper">
-    <canvas id="gameCanvas"></canvas>
-    <div class="canvas-overlay">
-      <div *ngIf="showNameInput" class="name-input">
-        <div class="YourName">What is your name?</div>
+  <div class="canvas-overlay">
+    <div *ngIf="showNameInput" class="name-input">
+      <div class="YourName">What is your name?</div>
+      <input
+        class="Text_field_name"
+        type="text"
+        [(ngModel)]="playerName"
+        placeholder="Enter your name"
+        (keydown.enter)="onEnterClicked()"
+      />
+      <button (click)="onEnterClicked()">Enter</button>
+    </div>
+  </div>
+  <div class="sound-effect-settings">
+    <div class="slider-row">
+      <div class="slider-wrapper">
+        <label>Music</label>
         <input
-          class="Text_field_name"
-          type="text"
-          [(ngModel)]="playerName"
-          placeholder="Enter your name"
-          (keydown.enter)="onEnterClicked()"
+          class="slider-music"
+          id="music"
+          type="range"
+          min="0"
+          step="0.01"
+          max="1"
+          value="10"
+          [(ngModel)]="MusicVolume"
+          (input)="onMusicVolumeChange()"
         />
-        <button (click)="onEnterClicked()">Enter</button>
+      </div>
+      <div class="slider-wrapper">
+        <label>Effect</label>
+        <input
+          class="slider-effect"
+          id="effect"
+          type="range"
+          min="0"
+          step="0.01"
+          value="0.1"
+          max="1"
+          [(ngModel)]="EffectVolume"
+          (input)="onEffectVolumeChange()"
+        />
       </div>
     </div>
-    <div class="sound-effect-settings">
-      <div class="slider-row">
-        <div class="slider-wrapper">
-          <label>Music</label>
-          <input class="slider-music" id="music" type="range" min="0" step="0.01" max="1" value="10" [(ngModel)]="MusicVolume" (input)="onMusicVolumeChange()" />
-        </div>
-        <div class="slider-wrapper">
-          <label>Effect</label>
-          <input class="slider-effect" id="effect" type="range" min="0" step="0.01" value="0.1" max="1" [(ngModel)]="EffectVolume" (input)="onEffectVolumeChange()" />
-        </div>
-      </div>
-    </div>
-    <div class="button">
-      <button id="BackBtn" (click)="onBack()">Back</button>
-    </div>
+  </div>
+  <div class="button">
+    <button id="BackBtn" (click)="onBack()">Back</button>
   </div>
 </div>
