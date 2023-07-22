@@ -57,18 +57,15 @@ export function playrainEffect(): void {
     rainEffect.play();
 };
 
-export function stoprainEffect(): void {
-    // Play the rainEffect
-    rainEffect.pause();
-};
-
 export function playBackgroundMusic(): void {
     // Play the background music
     if(isPlaying === false){
         if(MusicVolume){
             bgMusic.volume = MusicVolume;
+            bgMusic.currentTime = 0;
             bgMusic.play();
         }else{
+            bgMusic.currentTime = 0;
             bgMusic.play();
         }
         isPlaying = true;
@@ -76,27 +73,21 @@ export function playBackgroundMusic(): void {
     }
 };
 
-
-export function stopBackgroundMusic(): void {
-    // Stop the background music
-    let i = 1;
-    do{
-        i = i-1;
-        bgMusic.volume = i;
-    }while(bgMusic.volume > 0);
-    bgMusic.pause();
-    isPlaying = false;
-    bgMusicEnd.play();
-};
-
 export function playInputPlayerName(): void {
+    NameInputMusic.currentTime = 0;
     NameInputMusic.play();
 };
 
-export async function stopInputPlayerName() {
-    // Stop the background music
-    NameInputMusic.pause();
-};
+export function playbgMusicEnd(): void {
+    bgMusicEnd.play();
+}
+
+export async function stopAllMusic() {
+    await bgMusic.pause();
+    await bgMusicEnd.pause();
+    await NameInputMusic.pause();
+    isPlaying = false;
+}
 
 export function setVolumeBackgroundMusic(volume: number): void {
     MusicVolume = volume;

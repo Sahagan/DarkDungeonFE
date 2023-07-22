@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
-import { playBackgroundMusic, playButtonSound, stopBackgroundMusic} from 'src/app/services/common/utility.service';
+import { playBackgroundMusic, playButtonSound, playbgMusicEnd, stopAllMusic} from 'src/app/services/common/utility.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { StartButtonGuard } from 'src/app/services/guard/start-button.guard';
 
@@ -23,15 +23,17 @@ export class HomeComponent{
   ) {}
   public state = 'visible';
   public isStartButtonClicked: boolean = false;
-  ngOnInit(): void {
-      playBackgroundMusic(); // Start playing background music
+  async ngOnInit(): Promise<void> {
+    await stopAllMusic();
+    await playBackgroundMusic(); // Start playing background music
   };
 
-  onStartNewGame(): void {
+  async onStartNewGame(): Promise<void> {
     this.startButtonGuard.setStartButtonPressed();
     this.isStartButtonClicked = true; // Play the button sound effect
     this.state = 'hidden';
-    stopBackgroundMusic();
+    await stopAllMusic();
+    playbgMusicEnd();
     setTimeout(() => {
       this.isStartButtonClicked = false;
       this.router.navigate(['/start']);
