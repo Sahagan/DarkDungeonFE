@@ -60,7 +60,7 @@ export class StartComponent {
         throw `Player name cannot be empty!`
       }else if(this.playerName){
         if(/^[A-Za-z0-9]{1,10}$/.test(this.playerName) === false){
-          throw `Invalid PlayerName \n please enter only Character or Number without Spacebar`
+          throw `Invalid PlayerName \n please enter only Character[English] or Number without Spacebar \n The name should be less than 10 characters`
         }
       };
       url = await getUrl('username');
