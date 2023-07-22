@@ -59,17 +59,27 @@ export function playrainEffect(): void {
 
 export function playBackgroundMusic(): void {
     // Play the background music
-    if(isPlaying === false){
+    if(wasPlayingBefore === true){
         if(MusicVolume){
             bgMusic.volume = MusicVolume;
             bgMusic.currentTime = 0;
             bgMusic.play();
+            isPlaying = true;
+            wasPlayingBefore = false;
         }else{
             bgMusic.currentTime = 0;
             bgMusic.play();
+            isPlaying = true;
+            wasPlayingBefore = false;
         }
+    }else{
         isPlaying = true;
-        wasPlayingBefore = true;
+        if(MusicVolume){
+            bgMusic.volume = MusicVolume;
+            bgMusic.play();
+        }else{
+            bgMusic.play();
+        }
     }
 };
 
@@ -82,11 +92,14 @@ export function playbgMusicEnd(): void {
     bgMusicEnd.play();
 }
 
-export async function stopAllMusic() {
+export async function stopAllMusic(){
     await bgMusic.pause();
     await bgMusicEnd.pause();
+}
+
+export async function stopAllMusicPlus() {
     await NameInputMusic.pause();
-    isPlaying = false;
+    wasPlayingBefore = true;
 }
 
 export function setVolumeBackgroundMusic(volume: number): void {
