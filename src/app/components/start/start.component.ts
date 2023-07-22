@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, HostListener, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { getUrl, playButtonSound, playInputPlayerName, playrainEffect, setVolumeBackgroundMusic, setVolumeEffect, stopInputPlayerName, stoprainEffect } from '../../services/common/utility.service';
 import { RequestService } from 'src/app/services/common/request.service';
@@ -58,13 +58,18 @@ export class StartComponent {
     try{
       if(!this.playerName){
         throw `Player name cannot be empty!`
+      }else if(this.playerName){
+        if(/^[A-Za-z0-9]{1,10}$/.test(this.playerName) === false){
+          throw `Invalid PlayerName \n please enter only Character or Number without Spacebar`
+        }
       };
       url = await getUrl('username');
       response = await this.RequestService.postData(url,{"playerName" : this.playerName});
-      if(response){
+      if(response.resultCode === '20000'){
         this.showNameInput = false;
         url = await getUrl('map');
         response = await this.RequestService.getData(url);
+        //response = 
       }else{
         throw `Service Unavailable`
       }
@@ -72,4 +77,5 @@ export class StartComponent {
       alert(error);
     }
   };
+
 }

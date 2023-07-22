@@ -10,15 +10,16 @@ let wasPlayingBefore = false;
 //effect sound
 let buttonSound = new Audio('../../../assets/sound/pop.mp3');
 let rainEffect = new Audio('../../../assets/sound/soft-rain-ambient-111154.mp3');
-let dingEffect = new Audio('../../../asset/sound/ding.mp3');
 rainEffect.loop = true;
+buttonSound.volume = EffectVolume;
+buttonSound.volume = EffectVolume;
 //music
 let bgMusic = new Audio('../../../assets/sound/Title Theme/xDeviruchi - Title Theme (Loop).wav');
 let bgMusicEnd = new Audio('../../../assets/sound/Title Theme/xDeviruchi - Title Theme (End).wav');
 let NameInputMusic = new Audio('../../../assets/sound/WhatsYourName_David Fesliyan.mp3');
-bgMusic.volume = 0.1;
-bgMusicEnd.volume = 0.1;
-NameInputMusic.volume = 0.1;
+bgMusic.volume = MusicVolume;
+bgMusicEnd.volume = MusicVolume;
+NameInputMusic.volume = MusicVolume;
 bgMusic.loop = true; // Set the music to loop
 NameInputMusic.loop = true;
 
@@ -54,10 +55,6 @@ export function  playButtonSound(): void {
 
 export function playrainEffect(): void {
     rainEffect.play();
-};
-
-export function playDingEffect(): void {
-    dingEffect.play();
 };
 
 export function stoprainEffect(): void {
@@ -117,7 +114,6 @@ export function setVolumeEffect(volume: number): void {
     if (volume >= 0 && volume <= 1) {
         buttonSound.volume = volume;
         rainEffect.volume = volume;
-        dingEffect.volume = volume;
     };
 };
 

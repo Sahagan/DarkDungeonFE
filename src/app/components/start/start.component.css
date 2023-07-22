@@ -27,7 +27,24 @@
     height: 100%;
     background-color: white;
   }
+
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
   
+  .YourName{
+    animation: heartbeat 0.6061s infinite;
+    animation-delay: 1.5s;
+  }
+
   .name-input {
     font-family: '8BIT WONDER', sans-serif;
     font-size: 18px;

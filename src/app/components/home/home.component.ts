@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { playBackgroundMusic, playButtonSound, stopBackgroundMusic} from 'src/app/services/common/utility.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-
+import { StartButtonGuard } from 'src/app/services/guard/start-button.guard';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +19,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class HomeComponent{
   constructor(
     private router: Router,
+    private startButtonGuard: StartButtonGuard
   ) {}
   public state = 'visible';
   public isStartButtonClicked: boolean = false;
@@ -27,6 +28,7 @@ export class HomeComponent{
   };
 
   onStartNewGame(): void {
+    this.startButtonGuard.setStartButtonPressed();
     this.isStartButtonClicked = true; // Play the button sound effect
     this.state = 'hidden';
     stopBackgroundMusic();

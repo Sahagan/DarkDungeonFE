@@ -10,6 +10,7 @@ import { CreditsComponent } from './components/credits/credits.component';
 import { StartComponent } from './components/start/start.component';
 import { RequestService } from './services/common/request.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StartButtonGuard } from './services/guard/start-button.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [RequestService],
+  providers: [RequestService,StartButtonGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
