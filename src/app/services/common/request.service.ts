@@ -59,6 +59,20 @@ export class RequestService {
     }
 
     public getData(url:string){
-        
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+        try{
+            return this.http.get(url, {headers,observe: 'response' }).subscribe(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    throw error;
+                }
+            )
+        }catch(error){
+            return `can not getData : ${error}`
+        }
     }
 }
