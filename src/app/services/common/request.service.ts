@@ -59,6 +59,6 @@ export class RequestService {
     }
 
     public getData(url:string){
-
+        
     }
 }

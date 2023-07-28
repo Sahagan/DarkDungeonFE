@@ -70,15 +70,23 @@ export class StartComponent {
     playButtonSound();
     let response: any;
     let url: any;
-    url = await getUrl('username');
-    response = await this.RequestService.postData(url, { "playerName": this.playerName });
-    if (response.resultCode === '20000') {
-      this.showNameInput = false;
-      url = await getUrl('map');
-      response = await this.RequestService.getData(url);
-      //response = 
-    } else {
-      throw `Service Unavailable`
+    try {
+      url = await getUrl('username');
+      response = await this.RequestService.postData(url, { "playerName": this.playerName });
+      if (response.resultCode === '20000') {
+        this.showNameInput = false;
+        url = await getUrl('map');
+        response = await this.RequestService.getData(url);
+        if(response.resultCode === '20000' && response.data){
+        }else{
+          throw `An Error Occurred please contact our support`
+        }
+        //response = 
+      } else {
+        throw `An Error Occurred please contact our support`
+      }
+    } catch (error) {
+      alert(error);
     }
   }
 
