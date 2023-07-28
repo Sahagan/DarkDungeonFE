@@ -73,11 +73,13 @@ export class StartComponent {
     try {
       url = await getUrl('username');
       response = await this.RequestService.postData(url, { "playerName": this.playerName });
-      if (response.resultCode === '20000') {
+      if (response.body.resultCode === '20000') {
         this.showNameInput = false;
         url = await getUrl('map');
         response = await this.RequestService.getData(url);
-        if(response.resultCode === '20000' && response.data){
+        if(response.body.resultCode === '20000' && response.body.data){
+          console.log('hahahahahahaha');
+          
         }else{
           throw `An Error Occurred please contact our support`
         }

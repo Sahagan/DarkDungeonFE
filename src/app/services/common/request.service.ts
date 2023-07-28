@@ -40,37 +40,23 @@ export class RequestService {
     }
     
     //this.http.post('localhost:1234/test')
-    public postData(url:string ,reqBody: object) {
+    public async postData(url:string ,reqBody: object) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
         try{
-            return this.http.post(url, reqBody, {headers,observe: 'response' }).subscribe(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    throw error;
-                }
-            )
+            return await this.http.post(url, reqBody, {headers,observe: 'response' });
         }catch(error){
             return `can not postData : ${error}`
         }
     }
 
-    public getData(url:string){
+    public async getData(url:string){
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
         try{
-            return this.http.get(url, {headers,observe: 'response' }).subscribe(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    throw error;
-                }
-            )
+            return await this.http.get(url, {headers,observe: 'response' });
         }catch(error){
             return `can not getData : ${error}`
         }
