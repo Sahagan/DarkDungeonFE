@@ -45,7 +45,7 @@ export class RequestService {
             'Content-Type': 'application/json'
         });
         try{
-            return await this.http.post(url, reqBody, {headers,observe: 'response' });
+            return await this.http.post(url, reqBody, {headers,observe: 'response' }).toPromise();
         }catch(error){
             return `can not postData : ${error}`
         }
@@ -56,7 +56,7 @@ export class RequestService {
             'Content-Type': 'application/json'
         });
         try{
-            return await this.http.get(url, {headers,observe: 'response' });
+            return await this.http.get(url, {headers,observe: 'response' }).toPromise();
         }catch(error){
             return `can not getData : ${error}`
         }

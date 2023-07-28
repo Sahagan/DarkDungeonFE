@@ -39,7 +39,7 @@ export function getUrl(endpoint:string){
             case 'items':
                 return `${environment.backend}${environment.url.items}`;
             case 'map':
-                return `${environment.backend}${environment.url.username}`;
+                return `${environment.backend}${environment.url.map}`;
             default :
                 throw 'url does not exist'
         };
