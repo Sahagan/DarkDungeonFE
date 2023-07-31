@@ -74,6 +74,15 @@
     margin-top: 25px;
   }
 
+  .WarningMessage {
+    display: none;
+    margin-top: 25px;
+    color: red;
+    position: fixed;
+    white-space: nowrap;
+    transform: translateX(-25%);
+  }
+
   .ConfirmMSG {
     animation: heartbeat 0.6061s infinite;
   }

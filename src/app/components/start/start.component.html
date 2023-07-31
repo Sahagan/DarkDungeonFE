@@ -13,11 +13,11 @@
     </div>
     <div *ngIf="NameConfirm" class="name-confirm">
       <div class="ConfirmMSG">your name is {{playerName}}?</div>
-      <button (click)="onConfirmClicked()">YES</button>
-      <div class="WarningMessage" [ngStyle]="{ 'display': WaningMessage ? 'block' : 'none' }">warning : if you proceed this you can't go back</div>
+      <button (mouseenter)="showWaningMessage()" (mouseleave)="hideWaningMessage()" (click)="onConfirmClicked()">YES</button>
       <button (click)="onNoClicked()">NO</button>
+      <div class="WarningMessage" [ngStyle]="{ 'display': WaningMessage ? 'block' : 'none' }">warning : if you proceed this you can't go back</div>
     </div>
-  </div>s
+  </div>
   <div class="sound-effect-settings">
     <div class="slider-row">
       <div class="slider-wrapper">

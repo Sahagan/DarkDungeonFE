@@ -92,14 +92,14 @@ export class StartComponent {
           console.log('hahahahahahaha');
           
         }else{
-          throw `An Error Occurred please contact our support`
+          throw `err`
         }
         //response = 
       } else {
-        throw `An Error Occurred please contact our support`
+        throw `err`
       }
     } catch (error) {
-      alert(error);
+      alert(`An Error Occurred please contact our support`);
     }
   }
 
