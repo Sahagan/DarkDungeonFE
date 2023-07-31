@@ -10,9 +10,11 @@ let wasPlayingBefore = false;
 //effect sound
 let buttonSound = new Audio('../../../assets/sound/pop.mp3');
 let rainEffect = new Audio('../../../assets/sound/soft-rain-ambient-111154.mp3');
+let สวัสดีค้าบ = new Audio('../../../assets/sound/สวัสดดีค้าบ.mp3');
 rainEffect.loop = true;
 buttonSound.volume = EffectVolume;
-buttonSound.volume = EffectVolume;
+rainEffect.volume = EffectVolume;
+สวัสดีค้าบ.volume = EffectVolume;
 //music
 let bgMusic = new Audio('../../../assets/sound/Title Theme/xDeviruchi - Title Theme (Loop).wav');
 let bgMusicEnd = new Audio('../../../assets/sound/Title Theme/xDeviruchi - Title Theme (End).wav');
@@ -90,6 +92,10 @@ export function playInputPlayerName(): void {
 
 export function playbgMusicEnd(): void {
     bgMusicEnd.play();
+}
+
+export function playสวัสดดีค้าบEffect(): void {
+    สวัสดีค้าบ.play();
 }
 
 export async function stopAllMusic() {

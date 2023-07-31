@@ -1,6 +1,6 @@
 import { Component, HostListener, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { getUrl, playButtonSound, playInputPlayerName, playrainEffect, setVolumeBackgroundMusic, setVolumeEffect, stopAllMusicPlus } from '../../services/common/utility.service';
+import { getUrl, playButtonSound, playInputPlayerName, playrainEffect, playสวัสดดีค้าบEffect, setVolumeBackgroundMusic, setVolumeEffect, stopAllMusic, stopAllMusicPlus } from '../../services/common/utility.service';
 import { RequestService } from 'src/app/services/common/request.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -77,7 +77,8 @@ export class StartComponent {
     }
   };
   async onConfirmClicked() {
-    playButtonSound();
+    await stopAllMusic();
+    playสวัสดดีค้าบEffect();
     this.NameConfirm = false;
     this.isConfirmClicked = true;
     let response: any;
