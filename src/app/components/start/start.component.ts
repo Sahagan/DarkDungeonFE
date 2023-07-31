@@ -78,6 +78,7 @@ export class StartComponent {
   };
   async onConfirmClicked() {
     playButtonSound();
+    this.NameConfirm = false;
     this.isConfirmClicked = true;
     let response: any;
     let url: any;
