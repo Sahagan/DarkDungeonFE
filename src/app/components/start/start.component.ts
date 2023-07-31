@@ -22,9 +22,11 @@ export class StartComponent {
     private RequestService: RequestService
   ) { }
   public state = 'hidden';
+  public isConfirmClicked: boolean = false;
   playerName: any;
   EffectVolume: any;
   MusicVolume: any;
+  WaningMessage: boolean = false;
   //Input
   showNameInput: boolean = true;
   NameConfirm: boolean = false;
@@ -34,6 +36,14 @@ export class StartComponent {
       this.state = 'visible';
     }, 1000);
   };
+
+  showWaningMessage() {
+    this.WaningMessage = true;
+  }
+
+  hideWaningMessage() {
+    this.WaningMessage = false;
+  }
 
   onEffectVolumeChange(): void {
     setVolumeEffect(this.EffectVolume);
@@ -68,6 +78,7 @@ export class StartComponent {
   };
   async onConfirmClicked() {
     playButtonSound();
+    this.isConfirmClicked = true;
     let response: any;
     let url: any;
     try {
