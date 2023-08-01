@@ -1,6 +1,6 @@
 import { Component, HostListener, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { getUrl, playButtonSound, playInputPlayerName, playrainEffect, playสวัสดดีค้าบEffect, setVolumeBackgroundMusic, setVolumeEffect, stopAllMusic, stopAllMusicPlus } from '../../services/common/utility.service';
+import { getUrl, playButtonSound, playDialogEffect, playInputPlayerName, playrainEffect, playสวัสดดีค้าบEffect, setVolumeBackgroundMusic, setVolumeEffect, stopAllMusic, stopAllMusicPlus } from '../../services/common/utility.service';
 import { RequestService } from 'src/app/services/common/request.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -79,6 +79,18 @@ export class StartComponent {
       alert(error);
     }
   };
+
+
+  async animateText(text: string, duration: number) { //for animated text
+    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+    await delay(2000);
+    playDialogEffect(2000);
+    this.TypingText = true;
+    this.animatedText = text;
+    await delay(duration);
+    this.TypingText = false;
+  };
+
   async onConfirmClicked() {
     await stopAllMusic();
     playสวัสดดีค้าบEffect();
@@ -93,10 +105,11 @@ export class StartComponent {
         this.showNameInput = false;
         url = await getUrl('map');
         response = await this.RequestService.getData(url);
-        if(response.body.resultCode === '20000' && response.body.data){
-          this.TypingText = true;
-          this.animatedText = `Ello Test test`
-        }else{
+        if (response.body.resultCode === '20000' && response.body.data) {
+          await this.animateText('...',3000);
+          await this.animateText(`sorry, I've pick the wrong sound effect!!`,3000);
+          await this.animateText(`btw.. shall we begin?`,5000)
+        } else {
           throw `err`
         }
         //response = 

@@ -147,7 +147,6 @@
 .typing-text {
   white-space: nowrap;
   overflow: hidden;
-  font-family: '8BIT WONDER', sans-serif;
   color: white;
   animation: typing 2s steps(40);
 }
