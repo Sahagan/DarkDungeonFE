@@ -26,10 +26,13 @@ export class StartComponent {
   playerName: any;
   EffectVolume: any;
   MusicVolume: any;
+  animatedText: any;
   WaningMessage: boolean = false;
-  //Input
+  //Input 
   showNameInput: boolean = true;
   NameConfirm: boolean = false;
+  //typingText
+  TypingText: boolean = false;
   async ngOnInit(): Promise<void> {
     playInputPlayerName();
     await setTimeout(() => {
@@ -91,8 +94,8 @@ export class StartComponent {
         url = await getUrl('map');
         response = await this.RequestService.getData(url);
         if(response.body.resultCode === '20000' && response.body.data){
-          console.log('hahahahahahaha');
-          
+          this.TypingText = true;
+          this.animatedText = `Ello Test test`
         }else{
           throw `err`
         }

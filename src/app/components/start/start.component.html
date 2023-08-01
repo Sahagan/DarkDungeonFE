@@ -12,11 +12,23 @@
       <button (click)="onEnterClicked()">Enter</button>
     </div>
     <div *ngIf="NameConfirm" class="name-confirm">
-      <div class="ConfirmMSG">your name is {{playerName}}?</div>
-      <button (mouseenter)="showWaningMessage()" (mouseleave)="hideWaningMessage()" (click)="onConfirmClicked()">YES</button>
+      <div class="ConfirmMSG">your name is {{ playerName }}?</div>
+      <button
+        (mouseenter)="showWaningMessage()"
+        (mouseleave)="hideWaningMessage()"
+        (click)="onConfirmClicked()"
+      >
+        YES
+      </button>
       <button (click)="onNoClicked()">NO</button>
-      <div class="WarningMessage" [ngStyle]="{ 'display': WaningMessage ? 'block' : 'none' }">warning : if you proceed this you can't go back</div>
+      <div
+        class="WarningMessage"
+        [ngStyle]="{ display: WaningMessage ? 'block' : 'none' }"
+      >
+        warning : if you proceed this you can't go back
+      </div>
     </div>
+    <div *ngIf="TypingText" class="typing-text">{{animatedText}}</div>
   </div>
   <div class="sound-effect-settings">
     <div class="slider-row">
@@ -51,6 +63,8 @@
     </div>
   </div>
   <div class="button">
-    <button [disabled]="isConfirmClicked" id="BackBtn" (click)="onBack()">Back</button>
+    <button [disabled]="isConfirmClicked" id="BackBtn" (click)="onBack()">
+      Back
+    </button>
   </div>
 </div>
