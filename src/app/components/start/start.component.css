@@ -1,4 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/8bit-wonder');
+@import url('https://fonts.cdnfonts.com/css/ernest-borgnine');
 
 .gameplay {
   background-color: black;
@@ -145,10 +146,16 @@
 }
 
 .typing-text {
+  font-family: 'Ernest', sans-serif;
+  font-size: 400%;
   white-space: nowrap;
   overflow: hidden;
   color: white;
   animation: typing 2s steps(40);
+}
+
+.typing-text.finished {
+  animation-duration: 0s; /* Set custom animation duration to finish immediately */
 }
 
 .button button {

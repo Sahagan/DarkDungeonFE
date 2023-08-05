@@ -128,6 +128,7 @@ export function setVolumeEffect(volume: number): void {
     if (volume >= 0 && volume <= 1) {
         buttonSound.volume = volume;
         rainEffect.volume = volume;
+        dialogEffect.volume = volume;
     };
 };
 
@@ -155,6 +156,11 @@ export async function playDialogEffect(delay:number){
     const delayFunc = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
     dialogEffect.play();
     await delayFunc(delay);
+    dialogEffect.pause();
+    dialogEffect.currentTime = 0;
+}
+
+export async function stopDialogEffect() {
     dialogEffect.pause();
     dialogEffect.currentTime = 0;
 }

@@ -1,6 +1,6 @@
 import { Component, HostListener, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { getUrl, playButtonSound, playDialogEffect, playInputPlayerName, playrainEffect, playสวัสดดีค้าบEffect, setVolumeBackgroundMusic, setVolumeEffect, stopAllMusic, stopAllMusicPlus } from '../../services/common/utility.service';
+import { getUrl, playButtonSound, playDialogEffect, playInputPlayerName, playrainEffect, playสวัสดดีค้าบEffect, setVolumeBackgroundMusic, setVolumeEffect, stopAllMusic, stopAllMusicPlus, stopDialogEffect } from '../../services/common/utility.service';
 import { RequestService } from 'src/app/services/common/request.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -33,6 +33,8 @@ export class StartComponent {
   NameConfirm: boolean = false;
   //typingText
   TypingText: boolean = false;
+  typingFinished: boolean = false;
+
   async ngOnInit(): Promise<void> {
     playInputPlayerName();
     await setTimeout(() => {
@@ -83,12 +85,30 @@ export class StartComponent {
 
   async animateText(text: string, duration: number) { //for animated text
     const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+    // Check if the animation should be skipped
+    this.typingFinished = false;
+    let skipped = false
+    const spacebarListener = async (event: KeyboardEvent) => {
+      if (event.key == " " || event.code == "Space") {
+        this.typingFinished = true;
+        stopDialogEffect();
+        skipped = true;
+      }
+    };
+    document.addEventListener("keydown", await spacebarListener);
     await delay(2000);
-    playDialogEffect(2000);
-    this.TypingText = true;
-    this.animatedText = text;
-    await delay(duration);
-    this.TypingText = false;
+    if (!skipped) {
+      playDialogEffect(2000);
+      this.TypingText = true;
+      this.animatedText = text;
+
+      await delay(duration);
+      this.TypingText = false;
+    }else{
+      await delay(750);
+      this.TypingText = false;
+    }
+    document.removeEventListener("keydown",await spacebarListener);
   };
 
   async onConfirmClicked() {
@@ -106,9 +126,9 @@ export class StartComponent {
         url = await getUrl('map');
         response = await this.RequestService.getData(url);
         if (response.body.resultCode === '20000' && response.body.data) {
-          await this.animateText('...',3000);
-          await this.animateText(`sorry, I've pick the wrong sound effect!!`,3000);
-          await this.animateText(`btw.. shall we begin?`,5000)
+          await this.animateText('...', 3000);
+          await this.animateText(`sorry I've pick the wrong sound effect!!`, 3000);
+          await this.animateText(`btw.. shall we begin?`, 5000)
         } else {
           throw `err`
         }
