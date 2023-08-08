@@ -24,6 +24,9 @@ export class StartComponent {
   public state = 'hidden';
   public isConfirmClicked: boolean = false;
   playerName: any;
+  action: any;
+  advMessage: any;
+  lastMessage: any;
   EffectVolume: any;
   MusicVolume: any;
   animatedText: any;
@@ -33,6 +36,8 @@ export class StartComponent {
   NameConfirm: boolean = false;
   //typingText
   TypingText: boolean = false;
+  //Text_field_action
+  showActionInput:boolean = false;
 
   async ngOnInit(): Promise<void> {
     playInputPlayerName();
@@ -92,15 +97,18 @@ export class StartComponent {
       await delay(duration);
       this.TypingText = false;
     }else{
-      //this.TypingText = false;
+      await delay(5000);
+      this.showActionInput = true;
     }
   };
 
   async getDialog(stage: number,map?: string){
     let data:any = await generateDialog(this.playerName, stage, map);
+    this.advMessage = data.advMessage;
     if(data.message.length > 1){
       for(let i = 0 ; i < data.message.length ; i++){
         if(i == data.message.length - 1){
+          this.lastMessage = data.message[i];
           await this.animateText(data.message[i]);
         }else{
           await this.animateText(data.message[i],5000);
@@ -143,6 +151,19 @@ export class StartComponent {
     } catch (error) {
       alert(`An Error Occurred please contact our support`);
     }
+  }
+
+  async onActionClicked() {
+      if(!this.action){
+        this.showActionInput = false;
+        this.TypingText = false;
+        await this.animateText(`oh you want to do nothing?`, 5000);
+        await this.animateText(`Try Again!`, 5000);
+        await this.animateText(this.lastMessage);
+        this.showActionInput = true;
+      }else{
+
+      }
   }
 
   async onNoClicked() {

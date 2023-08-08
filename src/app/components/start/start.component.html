@@ -28,7 +28,17 @@
         warning : if you proceed this you can't go back
       </div>
     </div>
-    <div *ngIf="TypingText" class="typing-text" > {{animatedText}}</div>
+    <div *ngIf="TypingText" class="typing-text">{{ animatedText }}</div>
+    <div *ngIf="showActionInput" class="action-input">
+      <input
+        class="Text_field_action"
+        type="text"
+        [(ngModel)]="action"
+        placeholder="{{advMessage}}"
+        (keydown.enter)="onActionClicked()"
+      />
+      <button (click)="onActionClicked()">Proceed</button>
+    </div>
   </div>
   <div class="sound-effect-settings">
     <div class="slider-row">

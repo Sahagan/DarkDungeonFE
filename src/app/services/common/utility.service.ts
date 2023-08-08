@@ -187,9 +187,9 @@ export async function generateDialog(playerName: string, stage: number, map?: st
             "key": "prologue",
             "message": [
                 `You're an adventurer name's ${playerName}`,
-                `who want to Clear the hardest dundeon in this world...`,
+                `who want to Clear the hardest dungeon in this world...`,
                 `and now... you are at the entrance of Dark Dungeon`,
-                ` wanna go in?`
+                `wanna go in?`
             ],
             "advMessage" : `Type 'Go in'`
         }

@@ -155,8 +155,40 @@
 }
 
 .typing-text.finished {
-  animation-duration: 0s; /* Set custom animation duration to finish immediately */
+  animation-duration: 0s;
+  /* Set custom animation duration to finish immediately */
 }
+
+.action-input {
+  font-family: '8BIT WONDER', sans-serif;
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.action-input input {
+  font-family: '8BIT WONDER', sans-serif;
+  display: block;
+  margin-top: 35%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  color: black;
+}
+
+.action-input button {
+  padding: 10px 20px;
+  font-family: '8BIT WONDER', sans-serif;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-top: 30%;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+}
+
 
 .button button {
   padding: 10px 20px;
